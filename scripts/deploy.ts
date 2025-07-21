@@ -17,6 +17,8 @@ async function main() {
     const weth = await deploy<WETH9>("WETH9", []);
     const charityPool = await deploy<CharityPool>("CharityPool", [weth.target, owner]);
 
+    await tx(charityPool.setTokenApproval(erc20.target, true));
+
     await verifyAll();
 }
 
